@@ -8,16 +8,16 @@ namespace CursoGenerics.Circular_Buffer
 {
     public class Buffer<T> : IBuffer<T>
     {
-        private Queue<T> queue = new();
+        protected Queue<T> queue = new();
 
-        public bool IsEmpty => queue.Count == 0;
+        public virtual bool IsEmpty => queue.Count == 0;
 
-        public T Read()
+        public virtual T Read()
         {
             return queue.Dequeue();
         }
 
-        public void Write(T value)
+        public virtual void Write(T value)
         {
             queue.Enqueue(value);
         }
