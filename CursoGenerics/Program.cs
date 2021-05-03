@@ -1,4 +1,5 @@
 ﻿using CursoGenerics.Circular_Buffer;
+using CursoGenerics.EqualityComparer;
 using System;
 using System.Collections.Generic;
 
@@ -45,7 +46,7 @@ namespace CursoGenerics
             // Display powers of 2 up to the exponent 8:
             foreach (int i in Power(2, 8))
             {
-                if (i > 16) return;
+                if (i > 16) break;
                 Console.Write("{0} ", i);
             }
 
@@ -59,6 +60,30 @@ namespace CursoGenerics
                     yield return result;
                 }
             }
+            #endregion
+
+            #region IEqualityComparer
+
+            var departments = new SortedDictionary<string, SortedSet<Employee>>();
+
+            departments.Add("Sales", new SortedSet<Employee>(new EmployeeComparer()));
+            departments["Sales"].Add(new Employee { Name = "Juliana" });
+            departments["Sales"].Add(new Employee { Name = "Dirceu" });
+
+            departments.Add("Engineering", new SortedSet<Employee>(new EmployeeComparer()));
+            departments["Engineering"].Add(new Employee { Name = "Geraldo" });
+            departments["Engineering"].Add(new Employee { Name = "Geraldo" });
+
+            Console.WriteLine("\n\n");
+            foreach (var department in departments)
+            {
+                Console.WriteLine(department.Key);
+                foreach (var employee in department.Value)
+                {
+                    Console.WriteLine($"\t{employee.Name}");
+                }
+            }
+
             #endregion
         }
     }

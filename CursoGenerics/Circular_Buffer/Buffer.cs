@@ -31,7 +31,7 @@ namespace CursoGenerics.Circular_Buffer
                 yield return item;
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
+         IEnumerator IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
         }
