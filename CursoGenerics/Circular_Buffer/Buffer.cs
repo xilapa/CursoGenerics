@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace CursoGenerics.Circular_Buffer
 
         public virtual bool IsEmpty => queue.Count == 0;
 
+        bool IBuffer<T>.IsEmpty => throw new NotImplementedException();
+
         public virtual T Read()
         {
             return queue.Dequeue();
@@ -20,6 +23,17 @@ namespace CursoGenerics.Circular_Buffer
         public virtual void Write(T value)
         {
             queue.Enqueue(value);
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            foreach (var item in queue)
+                yield return item;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
     }
 }

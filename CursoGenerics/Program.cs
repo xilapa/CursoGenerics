@@ -40,6 +40,26 @@ namespace CursoGenerics
                 Console.WriteLine(item);
             }
             #endregion
+
+            #region Yield Return
+            // Display powers of 2 up to the exponent 8:
+            foreach (int i in Power(2, 8))
+            {
+                if (i > 16) return;
+                Console.Write("{0} ", i);
+            }
+
+            static IEnumerable<int> Power(int number, int exponent)
+            {
+                int counter = 0;
+                int result = 1;
+                while (counter++ < exponent)
+                {
+                    result = result * number;
+                    yield return result;
+                }
+            }
+            #endregion
         }
     }
 }
