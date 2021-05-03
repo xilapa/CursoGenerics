@@ -64,15 +64,13 @@ namespace CursoGenerics
 
             #region IEqualityComparer
 
-            var departments = new SortedDictionary<string, SortedSet<Employee>>();
+            var departments = new DepartmentCollection();
+            
+            departments.Add("Sales", new Employee { Name = "Juliana" })
+                       .Add("Sales", new Employee { Name = "Dirceu" });
 
-            departments.Add("Sales", new SortedSet<Employee>(new EmployeeComparer()));
-            departments["Sales"].Add(new Employee { Name = "Juliana" });
-            departments["Sales"].Add(new Employee { Name = "Dirceu" });
-
-            departments.Add("Engineering", new SortedSet<Employee>(new EmployeeComparer()));
-            departments["Engineering"].Add(new Employee { Name = "Geraldo" });
-            departments["Engineering"].Add(new Employee { Name = "Geraldo" });
+            departments.Add("Engineering", new Employee { Name = "Geraldo" })
+                       .Add("Engineering", new Employee { Name = "Geraldo" });
 
             Console.WriteLine("\n\n");
             foreach (var department in departments)
