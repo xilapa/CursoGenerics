@@ -83,6 +83,19 @@ namespace CursoGenerics
             }
 
             #endregion
+
+            #region Predicate
+
+            Predicate<int> maiorQue5;
+
+            maiorQue5 = (x) => x > 5;
+
+            Console.WriteLine("predicado {0}", maiorQue5(4));
+            Console.WriteLine("predicado {0}", maiorQue5(5));
+            Console.WriteLine("predicado {0}", maiorQue5(6));
+
+            #endregion
+
         }
     }
 }
