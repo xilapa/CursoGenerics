@@ -2,6 +2,11 @@
 using CursoGenerics.EqualityComparer;
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore;
+using CursoGenerics.GenericConstraints.Models;
+using CursoGenerics.GenericConstraints.Persistence;
+using System.Linq;
 
 namespace CursoGenerics
 {
@@ -96,6 +101,18 @@ namespace CursoGenerics
 
             #endregion
 
+            #region Repository with Generic and Constraints
+
+            using (var context = new SqlRepository<Manager>(new ManagerRepository()))
+            {
+                context.Add(new Manager() { Name = "Dirceu" });
+                context.Add(new Manager() { Name = "Dirceu" });
+                context.Commit();
+                var count = context.FindAll().Count();
+                Console.WriteLine(count);
+            };
+
+            #endregion
         }
     }
 }
