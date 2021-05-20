@@ -113,6 +113,12 @@ namespace CursoGenerics
             };
 
             #endregion
+
+            #region Reflections and Generics
+
+            var objeto = Activator.CreateInstance(typeof(string));
+
+            #endregion
         }
     }
 }
